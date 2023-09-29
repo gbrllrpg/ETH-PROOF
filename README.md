@@ -18,6 +18,40 @@ The burn function removes tokens from the balance of the specified address and t
 * createToken.sol can be run using the online solidity IDE https://remix.ethereum.org/
 
 ### Executing program
+```javascript
+pragma solidity 0.8.18;
+
+contract MyToken {
+    string public token_Name = "PandaPunks";
+    string public token_Abbreviation = "PPNKS";
+    uint public total_Supply = 0;
+
+    function mint(address recipient, uint256 amount) public {
+        require(msg.sender == owner, "Only the owner can mint tokens.");
+
+        total_Supply += amount;
+        _mint(recipient, amount);
+    }
+
+    function burn(uint256 amount) public {
+        require(balanceOf(msg.sender) >= amount, "Insufficient balance to burn.");
+
+        total_Supply -= amount;
+        _burn(msg.sender, amount);
+    }
+
+    function assert_func() public {
+        assert(total_Supply >= 0);
+    }
+
+    function revert_func() public {
+        if (total_Supply <= 0) {
+            revert("Total supply must be greater than zero.");
+        }
+    }
+}
+
+```
 
 * Go to https://remix.ethereum.org/
 * Right click on a blank area in FILE EXPORER(Right Window) and click upload file
