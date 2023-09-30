@@ -54,6 +54,8 @@ contract MyToken {
     }
 }
 
+```
+
 * Right click on a blank area in FILE EXPORER(Right Window) and click upload file
 * Upload createToken.sol
 * Open on createToken.sol in FILE EXPORER
